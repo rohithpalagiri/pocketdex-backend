@@ -1,4 +1,5 @@
 const express = require('express')
+const path = require('path');
 const app = express()
 const cors = require('cors')
 const axios = require('axios')
@@ -6,7 +7,8 @@ const axios = require('axios')
 //Middleware
 app.use(cors())
 app.use(express.json())
-app.use(express.static('build'))
+// app.use(express.static('build'))
+app.use(express.static(path.join(__dirname, 'build')));
 
 const unknownEndpoint = (request, response) => {
     response.status(404).send({ error: 'unknown endpoint' })
