@@ -13,6 +13,13 @@ const unknownEndpoint = (request, response) => {
 
 let fullPkmList = require('./fullPkmList.json')
 
+function ignoreFavicon(req, res, next) {
+    if (req.originalUrl.includes('favicon.ico')) {
+      res.status(204).end()
+    }
+    next();
+  }
+
 app.get('/', (req, res) => {
     axios.get(`https://pokeapi.co/api/v2/pokemon/?limit=100`)
         .then((list) => res.json(list.data.results))
@@ -42,7 +49,7 @@ app.get('/pokedex/:id', (request, response) => {
 
 app.use(unknownEndpoint)
 
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`)
+    console.log(`this is a test ${PORT}`)
 })
