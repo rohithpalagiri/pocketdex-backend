@@ -21,10 +21,13 @@ function ignoreFavicon(req, res, next) {
     next();
   }
 
-app.get('/', (req, res) => {
+app.get('/api/pokedex', (req, res) => {
     axios.get(`https://pokeapi.co/api/v2/pokemon/?limit=100`)
-        .then((list) => res.json(list.data.results))
+        .then((list) =>{
+            res.json(list.data.results)
+        })
 })
+
 
 app.get('/pokedex/:id', (request, response) => {
     const id = Number(request.params.id)
