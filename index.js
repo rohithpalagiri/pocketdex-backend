@@ -33,7 +33,7 @@ app.get('/api/pokedex', (req, res) => {
 })
 
 
-app.get('/pokedex/:id', (request, response) => {
+app.get('/api/pokedex/:id', (request, response) => {
     const id = Number(request.params.id)
     const pokemon = fullPkmList[id - 1]
 
